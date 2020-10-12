@@ -5,14 +5,30 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import axios from 'axios';
 
+axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com';
+axios.defaults.headers.common['Authorization'] = 'AUTH TOKEN';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+
 axios.interceptors.request.use(reqConf => {
   console.log(reqConf);
   //Edit request config
   return reqConf;
 }, error => {
+  //for request sending fails
   console.log(error);
   return Promise.reject(error);
-})
+});
+
+axios.interceptors.response.use(resConf => {
+  console.log(resConf);
+  //Edit response config
+  return resConf;
+}, error => {
+  //for request sending fails
+  console.log(error);
+  return Promise.reject(error);
+});
+
 
 ReactDOM.render( <App />, document.getElementById( 'root' ) );
 registerServiceWorker();
