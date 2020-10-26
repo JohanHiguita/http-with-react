@@ -7,7 +7,6 @@ import NewPost from './NewPost/NewPost';
 class Blog extends Component {
  
     render() {
-        
         return (
             <div className="Blog">
                 <header>
